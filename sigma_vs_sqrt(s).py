@@ -20,9 +20,9 @@ me = 0.511e6
 re = 2.82e-15
 #%% function for cross-section
 
-def sigma(E_g, E_x, t):
+def sigma(E_g, E_x, c):
     # CoM invariant mass^2
-    s = 2*(1-np.cos(t))*E_g*E_x
+    s = 2*(1-c)*E_g*E_x
     if s < 4*me*me:
         sig = 0
     else:
@@ -34,32 +34,37 @@ def sigma(E_g, E_x, t):
 # 2. set of data for E_g and E_x with reasonable range in 1D array form
 
 # x-ray spectrum of range 1.3-1.4 keV with resolution 4 eV
-E_x = np.arange(1.3e3, 1.4e3, 4)
+E_x = np.linspace(1.3e3, 1.4e3, 100)
 # gamma ray maximum of 710 +- 50 MeV
-E_g = np.linspace(660e6, 760e6, 25)
+E_g = np.linspace(660e6, 760e6, 100)
 #%%
 # 3. matrix of sigma values for E_g and E_x values
 #matrix of cross-sections 
 sig = np.zeros((len(E_g), len(E_x)))
 
 #angle of interaction
-theta = 2.5
+cos = -0.1
+
 for i in range(len(E_g)):
     for j in range(len(E_x)):
-        sig[i][j] = sigma(E_g[i], E_x[j], theta)
+        sig[i][j] = sigma(E_g[i], E_x[j], cos)
 #%% print matrix
+#scaling
+vmax = sig.max()
+vmin = sig.min()
+xmin = E_x.min()
+xmax = E_x.max()
+gmin = E_g.min()
+gmax = E_g.max()
 
 x,y = np.meshgrid(E_x, E_g)
 
-plt.title("cross-section for given photon E at theta = 2.5", y=1.08)
+plt.title("cross-section for given photon E at cos(theta) = %f" % cos, y=1.08)
 plt.xlabel("X-ray energy / eV")
 plt.ylabel("Gamma ray energy / eV")
-plt.pcolormesh(x, y, sig, cmap = 'jet')
-plt.colorbar()
-plt.show()
 
-
-        
-
-
-    
+contours = plt.contour(x, y, sig, 6, vmax= vmax, vmin= vmin, colors='black')
+plt.clabel(contours, inline=True, fontsize=8)
+plt.imshow(sig, extent=[xmin, xmax, gmin, gmax], origin='lower',
+           cmap='jet', aspect='auto')
+plt.colorbar()  
