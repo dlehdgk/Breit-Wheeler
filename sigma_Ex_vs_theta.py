@@ -26,7 +26,7 @@ def sigma(E_g, E_x, c):
         sig = 0.5*np.pi*re*re*(1-b*b)*((3-b*b*b*b)*np.log((1+b)/(1-b))-2*b*(2-b*b))
     return sig
 #%%
-#plotting cross-section for range 0<theta<pi and 1.3 keV < x-ray < 1.4 keV and 710 MeV gamma
+#plotting cross-section for range -1 < cos theta < 1 and 1.3 keV < x-ray < 1.4 keV and 710 MeV gamma
 #E gamma = 710 MeV
 Eg = 710e6
 c = np.linspace(-1, 1, 100)
