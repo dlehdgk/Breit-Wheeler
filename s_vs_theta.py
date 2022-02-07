@@ -21,7 +21,7 @@ def s(E, c):
         s = 0
     return s
 #x-ray spread for fixed gamma
-E = np.linspace(1.3e3, 1.4e3, 100)
+E = np.linspace(1e3, 1.5e3, 100)
 c = np.linspace(-1, 1, 100)
 
 m = np.zeros((len(E), len(c)))
@@ -38,7 +38,7 @@ vmin = ma.min()
 Emin = E.min()
 Emax = E.max()
 #%%
-plt.title("invariant mass^2 for x-ray and angle with gamma = 710 MeV", y=1.08)
+plt.title("s for x-ray and angle with gamma = 710 MeV", y=1.08)
 plt.xlabel("cos(interaction angle)")
 plt.ylabel("x-ray energies / eV")
 contours = plt.contour(x, y, m, 3, vmax= vmax, vmin= vmin, colors='black')

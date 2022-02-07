@@ -28,9 +28,9 @@ def sigma(E_g, E_x, c):
 #%%
 #plotting cross-section for range -1 < cos theta < 1 and 1.3 keV < x-ray < 1.4 keV and 710 MeV gamma
 #E gamma = 710 MeV
-Eg = 710e6
+Eg = 650e6
 c = np.linspace(-1, 1, 100)
-E_x = np.linspace(1.3e3, 1.4e3, 100)
+E_x = np.linspace(1e3, 2e3, 100)
 # x-section for Ex and theta
 sig = np.zeros((len(E_x), len(c)))
 

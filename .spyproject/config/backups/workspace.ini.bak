@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['sigma_vs_sqrt(s).py', 's_vs_theta.py', 'sigma_Ex_vs_theta.py']
+recent_files = ['s_vs_theta.py', 'sigma_Ex_vs_theta.py', 'function.py', 'sigma_vs_sqrt(s).py', '3D_test.py', 'N_g&n_x.py']
 
 [main]
 version = 0.2.0
